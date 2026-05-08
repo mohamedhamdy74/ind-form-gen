@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120">
+  <!-- CEEC Block Logo -->
+  <g transform="translate(0,5)">
+    <!-- First C (blue) -->
+    <rect x="0" y="0" width="28" height="14" rx="1" fill="#0068B7"/>
+    <rect x="32" y="0" width="14" height="14" rx="1" fill="#0068B7"/>
+    <rect x="0" y="18" width="14" height="30" rx="1" fill="#0068B7"/>
+    <rect x="0" y="52" width="14" height="30" rx="1" fill="#0068B7"/>
+    <rect x="0" y="86" width="28" height="14" rx="1" fill="#0068B7"/>
+    <rect x="32" y="86" width="14" height="14" rx="1" fill="#0068B7"/>
+
+    <!-- E middle section (blue top, red bottom) -->
+    <rect x="55" y="0" width="28" height="14" rx="1" fill="#0068B7"/>
+    <rect x="87" y="0" width="14" height="14" rx="1" fill="#0068B7"/>
+    <rect x="55" y="18" width="14" height="30" rx="1" fill="#0068B7"/>
+    <rect x="55" y="52" width="14" height="14" rx="1" fill="#CC0000"/>
+    <rect x="73" y="52" width="14" height="14" rx="1" fill="#CC0000"/>
+    <rect x="55" y="70" width="14" height="16" rx="1" fill="#CC0000"/>
+    <rect x="55" y="86" width="28" height="14" rx="1" fill="#CC0000"/>
+    <rect x="87" y="86" width="14" height="14" rx="1" fill="#CC0000"/>
+
+    <!-- Reversed E / 3 shape (blue top, red bottom) -->
+    <rect x="110" y="0" width="14" height="14" rx="1" fill="#0068B7"/>
+    <rect x="128" y="0" width="28" height="14" rx="1" fill="#0068B7"/>
+    <rect x="142" y="18" width="14" height="30" rx="1" fill="#0068B7"/>
+    <rect x="124" y="52" width="14" height="14" rx="1" fill="#CC0000"/>
+    <rect x="142" y="52" width="14" height="14" rx="1" fill="#CC0000"/>
+    <rect x="142" y="70" width="14" height="16" rx="1" fill="#CC0000"/>
+    <rect x="110" y="86" width="14" height="14" rx="1" fill="#0068B7"/>
+    <rect x="128" y="86" width="28" height="14" rx="1" fill="#0068B7"/>
+
+    <!-- Last C (blue, mirrored) -->
+    <rect x="165" y="0" width="14" height="14" rx="1" fill="#0068B7"/>
+    <rect x="183" y="0" width="28" height="14" rx="1" fill="#0068B7"/>
+    <rect x="197" y="18" width="14" height="30" rx="1" fill="#0068B7"/>
+    <rect x="197" y="52" width="14" height="30" rx="1" fill="#0068B7"/>
+    <rect x="165" y="86" width="14" height="14" rx="1" fill="#0068B7"/>
+    <rect x="183" y="86" width="28" height="14" rx="1" fill="#0068B7"/>
+  </g>
+
+  <!-- Chinese Characters 中国能建 -->
+  <text x="240" y="60" font-family="SimSun, SimHei, 'Microsoft YaHei', serif" font-size="52" fill="#4A4A4A" font-weight="bold">中国能建</text>
+  
+  <!-- ENERGY CHINA text -->
+  <text x="242" y="95" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#4A4A4A" font-weight="bold" letter-spacing="2">ENERGY CHINA</text>
+</svg>
