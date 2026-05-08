@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AFRE Induction Form Generator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <!-- SheetJS for Excel parsing -->
   <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 </head>
+
 <body>
 
   <!-- ==================== UPLOAD SECTION ==================== -->
@@ -25,9 +29,14 @@
       <div class="upload-header">
         <div class="logo-badge">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <rect width="40" height="40" rx="10" fill="url(#grad1)"/>
-            <path d="M12 28V18L20 12L28 18V28H22V22H18V28H12Z" fill="white" opacity="0.9"/>
-            <defs><linearGradient id="grad1" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+            <rect width="40" height="40" rx="10" fill="url(#grad1)" />
+            <path d="M12 28V18L20 12L28 18V28H22V22H18V28H12Z" fill="white" opacity="0.9" />
+            <defs>
+              <linearGradient id="grad1" x1="0" y1="0" x2="40" y2="40">
+                <stop stop-color="#6366f1" />
+                <stop offset="1" stop-color="#8b5cf6" />
+              </linearGradient>
+            </defs>
           </svg>
         </div>
         <h1>AFRE Induction Form Generator</h1>
@@ -38,24 +47,38 @@
         <div class="drop-zone" id="drop-zone">
           <div class="drop-icon">
             <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-              <circle cx="32" cy="32" r="30" stroke="url(#uploadGrad)" stroke-width="2" stroke-dasharray="8 4" opacity="0.5"/>
-              <path d="M32 20V38M32 20L24 28M32 20L40 28" stroke="url(#uploadGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M20 42H44" stroke="url(#uploadGrad)" stroke-width="2.5" stroke-linecap="round"/>
-              <defs><linearGradient id="uploadGrad" x1="16" y1="16" x2="48" y2="48"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+              <circle cx="32" cy="32" r="30" stroke="url(#uploadGrad)" stroke-width="2" stroke-dasharray="8 4"
+                opacity="0.5" />
+              <path d="M32 20V38M32 20L24 28M32 20L40 28" stroke="url(#uploadGrad)" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M20 42H44" stroke="url(#uploadGrad)" stroke-width="2.5" stroke-linecap="round" />
+              <defs>
+                <linearGradient id="uploadGrad" x1="16" y1="16" x2="48" y2="48">
+                  <stop stop-color="#6366f1" />
+                  <stop offset="1" stop-color="#a855f7" />
+                </linearGradient>
+              </defs>
             </svg>
           </div>
           <h3>اسحب ملف Excel هنا</h3>
           <p>أو اضغط لاختيار الملف</p>
           <input type="file" id="file-input" accept=".xlsx,.xls,.csv" hidden />
-          <button class="browse-btn" onclick="document.getElementById('file-input').click()">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10H17M10 3V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <button class="browse-btn">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 10H17M10 3V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
             اختر الملف
           </button>
         </div>
 
         <div class="file-info" id="file-info" style="display:none;">
           <div class="file-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="2" width="24" height="28" rx="3" fill="#10b981" opacity="0.15"/><path d="M4 5C4 3.34 5.34 2 7 2H20L28 10V27C28 28.66 26.66 30 25 30H7C5.34 30 4 28.66 4 27V5Z" stroke="#10b981" stroke-width="1.5"/><path d="M20 2V10H28" stroke="#10b981" stroke-width="1.5"/></svg>
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="4" y="2" width="24" height="28" rx="3" fill="#10b981" opacity="0.15" />
+              <path d="M4 5C4 3.34 5.34 2 7 2H20L28 10V27C28 28.66 26.66 30 25 30H7C5.34 30 4 28.66 4 27V5Z"
+                stroke="#10b981" stroke-width="1.5" />
+              <path d="M20 2V10H28" stroke="#10b981" stroke-width="1.5" />
+            </svg>
           </div>
           <div class="file-details">
             <span class="file-name" id="file-name"></span>
@@ -66,7 +89,7 @@
       </div>
 
       <div class="excel-format-guide">
-        <h4>📋 تنسيق ملف Excel المطلوب:</h4>
+        <h4> تنسيق ملف Excel المطلوب:</h4>
         <div class="format-table-wrapper">
           <table class="format-table">
             <thead>
@@ -98,7 +121,10 @@
           <span>سجل تم قراءته</span>
         </div>
         <button class="generate-btn" id="generate-btn" onclick="generateForms()">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4H10V10H4V4ZM12 4H16V8H12V4ZM4 12H8V16H4V12ZM14 12V16M12 14H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 4H10V10H4V4ZM12 4H16V8H12V4ZM4 12H8V16H4V12ZM14 12V16M12 14H16" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
           توليد النماذج
         </button>
       </div>
@@ -109,14 +135,20 @@
   <div id="forms-section" class="forms-section" style="display:none;">
     <div class="forms-toolbar no-print">
       <button class="back-btn" onclick="goBack()">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
         رجوع
       </button>
       <div class="toolbar-info">
         <span id="total-forms">0</span> نموذج تم توليده
       </div>
       <button class="print-btn" onclick="window.print()">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8V2H15V8M5 14H3V9H17V14H15M5 12H15V18H5V12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M5 8V2H15V8M5 14H3V9H17V14H15M5 12H15V18H5V12Z" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
         طباعة الكل
       </button>
     </div>
@@ -126,4 +158,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>

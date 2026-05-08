@@ -27,6 +27,7 @@ dropZone.addEventListener('drop', (e) => {
 });
 
 dropZone.addEventListener('click', () => {
+  fileInput.value = '';
   fileInput.click();
 });
 
@@ -69,20 +70,42 @@ function handleFile(file) {
       }
 
       // ===== SMART COLUMN DETECTION =====
-      const headerRow = jsonData[0].map(h => String(h || ''));
-      const columnMap = detectColumns(headerRow);
+      let headerRowIndex = 0;
+      let columnMap = { name: null, idNumber: null, position: null, date: null, company: null };
+      let headerRow = [];
+
+      // Scan up to the first 20 rows to find the actual header row
+      for (let r = 0; r < Math.min(jsonData.length, 20); r++) {
+        const potentialHeader = (jsonData[r] || []).map(h => String(h || ''));
+        const tempMap = detectColumns(potentialHeader, false);
+        
+        // If we detect at least a name or ID column, consider it the header row
+        if (tempMap.name !== null || tempMap.idNumber !== null) {
+          headerRowIndex = r;
+          headerRow = potentialHeader;
+          columnMap = tempMap;
+          break;
+        }
+      }
+
+      // If we couldn't find a valid header row, fallback to the first row with positional assumption
+      if (columnMap.name === null && columnMap.idNumber === null) {
+        headerRowIndex = 0;
+        headerRow = (jsonData[0] || []).map(h => String(h || ''));
+        columnMap = detectColumns(headerRow, true);
+      }
       
-      if (!columnMap.name && !columnMap.idNumber) {
+      if (columnMap.name === null && columnMap.idNumber === null) {
         alert('مش قادر أتعرف على الأعمدة. تأكد إن فيه عمود للاسم وعمود للرقم القومي.\n\nالأسماء المدعومة:\n- الاسم / Name / الأسم / اسم العامل\n- الرقم القومي / ID / National ID\n- الوظيفة / Position / Job\n- التاريخ / Date\n- الشركة / Company');
         return;
       }
 
       // Show detected columns info
-      console.log('Detected columns:', columnMap);
+      console.log('Detected columns:', columnMap, 'at row:', headerRowIndex + 1);
       
       // Skip header row, parse data
       parsedData = [];
-      for (let i = 1; i < jsonData.length; i++) {
+      for (let i = headerRowIndex + 1; i < jsonData.length; i++) {
         const row = jsonData[i];
         if (!row || row.length === 0) continue;
         
@@ -137,7 +160,7 @@ function normalizeHeader(str) {
     .trim();
 }
 
-function detectColumns(headerRow) {
+function detectColumns(headerRow, useFallback = true) {
   // Define all possible aliases for each field
   const fieldAliases = {
     name: [
@@ -231,7 +254,7 @@ function detectColumns(headerRow) {
   }
 
   // Fallback: if no columns detected by name, use position-based (first 5 columns)
-  if (result.name === null && result.idNumber === null) {
+  if (useFallback && result.name === null && result.idNumber === null) {
     console.warn('No columns detected by header name, falling back to position-based detection');
     const totalCols = headerRow.length;
     if (totalCols >= 1) result.name = 0;
@@ -280,14 +303,16 @@ function generateForms() {
 
   setTimeout(() => {
     const container = document.getElementById('forms-container');
-    container.innerHTML = '';
+    let formsHtml = '';
 
     parsedData.forEach((person, index) => {
       // Page 1
-      container.innerHTML += generatePage1(person, index);
+      formsHtml += generatePage1(person, index);
       // Page 2
-      container.innerHTML += generatePage2(person, index);
+      formsHtml += generatePage2(person, index);
     });
+
+    container.innerHTML = formsHtml;
 
     document.getElementById('total-forms').textContent = parsedData.length;
     document.getElementById('upload-section').style.display = 'none';
